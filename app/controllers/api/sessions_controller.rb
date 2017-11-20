@@ -4,17 +4,21 @@ class Api::SessionsController < ApplicationController
       params[:user][:username],
       params[:user][:password]
     )
-    
+
     if @user
       login(@user)
+      render json: ['logged in successfully']
     else
-      flash.now[:errors] = ["Invalid credentials"]
+      render json: ["Invalid credentials"]
     end
   end
 
   def destroy
-    render :error unless current_user
-    logout
-    render json: {}
+    if current_user
+      logout
+      render json: {}
+    else
+      render json: ["User not found"], status: 404
+    end
   end
 end
