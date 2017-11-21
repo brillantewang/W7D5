@@ -7,7 +7,7 @@ class Api::SessionsController < ApplicationController
 
     if @user
       login(@user)
-      render json: ['logged in successfully']
+      render :show
     else
       render json: ["Invalid credentials"], status: 422
     end

@@ -17,18 +17,24 @@ export const receiveErrors = errors => ({
 
 export const login = user => dispatch => {
   SessionAPIUtil.login(user)
-    .then(currentUser => dispatch(receiveCurrentUser(currentUser)))
-    .then(err => dispatch(receiveErrors(err)))
+    .then(
+      currentUser => dispatch(receiveCurrentUser(currentUser)),
+      err => dispatch(receiveErrors(err))
+    )
 };
 
 export const logout = () => dispatch => {
   SessionAPIUtil.logout()
-    .then(response => dispatch(receiveCurrentUser(null)))
-    .then(err => dispatch(receiveErrors(err)))
+    .then(
+      response => dispatch(receiveCurrentUser(null)),
+      err => dispatch(receiveErrors(err))
+    )
 };
 
 export const signup = user => dispatch => {
   SessionAPIUtil.signup(user)
-    .then(currentUser => dispatch(receiveCurrentUser(currentUser)))
-    .then(err => dispatch(receiveErrors(err)))
+    .then(
+      currentUser => dispatch(receiveCurrentUser(currentUser)),
+      err => dispatch(receiveErrors(err))
+    )
 };
